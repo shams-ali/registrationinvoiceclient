@@ -42,7 +42,7 @@ class Vehicles extends Component {
 
   getVehicles() {
     // TODO: get vehciles related to particular client
-    axios.get('/v1/vehicles')
+    axios.get(`/v1/vehicles?client_id=${this.props.params.client_id}`)
       .then(({ data: { data } }) => this.setState({ vehicles: data }))
       .catch((error) => console.error(error));
   }
