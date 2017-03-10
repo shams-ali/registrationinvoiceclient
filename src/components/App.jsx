@@ -6,6 +6,7 @@ import SignIn from './SignIn.jsx';
 import MainContainer from './MainContainer.jsx';
 import Clients from './data/Clients.jsx';
 import Vehicles from './data/Vehicles.jsx';
+import Fees from './data/Fees.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -31,6 +32,7 @@ class App extends React.Component {
           <IndexRoute component={Home} />
           <Route path="application/:type" component={Clients} />
           <Route path="application/:type/:client_id/vehicles" component={Vehicles} />
+          <Route path="application/:type/:client_id/vehicles/:vehicle_id/fees" component={Fees} />
           <Route path="sign-in" component={SignIn} />
           <Route path="*" component={NotFound} />
         </Route>

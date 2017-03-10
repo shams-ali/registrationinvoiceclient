@@ -1,9 +1,10 @@
 /* eslint no-param-reassign: off */
 /* eslint no-alert: off */
 /* eslint no-confirm: off */
-
+/* eslint max-len: ["error", 200] */
 
 import React, { PropTypes, Component } from 'react';
+import { Link } from 'react-router';
 import axios from 'axios';
 import _ from 'lodash';
 import FormContainer from '../form/FormContainer.jsx';
@@ -41,7 +42,6 @@ class Vehicles extends Component {
   }
 
   getVehicles() {
-    // TODO: get vehciles related to particular client
     axios.get(`/v1/vehicles?client_id=${this.props.params.client_id}`)
       .then(({ data: { data } }) => this.setState({ vehicles: data }))
       .catch((error) => console.error(error));
@@ -82,7 +82,6 @@ class Vehicles extends Component {
               <th>VIN</th>
               <th></th>
               <th></th>
-              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -104,26 +103,15 @@ class Vehicles extends Component {
                 </button>
               </td>
               <td>
-                <button
+                <Link
+                  to={`/application/client/${this.props.params.client_id}/vehicles/${vehicle.id}/fees`}
                   className="btn btn-primary btn-sm"
                   key={i}
                   id={`enter${vehicle.id}`}
                   value={vehicle.id}
-                  onClick={this.goVehicles}
                 >
-                  New Fees
-                </button>
-              </td>
-              <td>
-                <button
-                  className="btn btn-primary btn-sm"
-                  key={i}
-                  id={`enter${vehicle.id}`}
-                  value={vehicle.id}
-                  onClick={this.goVehicles}
-                >
-                  Make Payment
-                </button>
+                  View Fees
+                </Link>
               </td>
             </tr>
             ))
